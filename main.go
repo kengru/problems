@@ -7,8 +7,7 @@ import (
 )
 
 func main() {
-	for _, v := range leetcode.Examples1089.Tests {
-		leetcode.DuplicateZeros1089(v)
-		fmt.Println(v)
+	for _, v := range leetcode.Examples1736.Tests {
+		fmt.Println(leetcode.MaximumTime1736(v))
 	}
 }
