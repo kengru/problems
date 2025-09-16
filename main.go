@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-	for _, v := range leetcode.Examples876.Tests {
-		fmt.Println(leetcode.MiddleNode876(v))
+	for _, v := range leetcode.Examples1089.Tests {
+		leetcode.DuplicateZeros1089(v)
+		fmt.Println(v)
 	}
 }
