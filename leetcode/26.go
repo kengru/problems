@@ -9,16 +9,14 @@ package leetcode
 // The remaining elements of nums are not important as well as the size of nums.
 // Return k.
 
-func RemoveElement27(nums []int, val int) int {
+func RemoveDuplicates26(nums []int) int {
 	idx := 0
-	k := 0
-	for idx <= len(nums)-1 {
-		if nums[idx] == val {
-			shiftLeft(nums, idx)
-			k++
-		} else {
+	for j := 0; j < len(nums)-1; j++ {
+		if nums[j] != nums[j+1] {
+			nums[idx] = nums[j]
 			idx++
 		}
 	}
-	return len(nums) - k
+	nums[idx] = nums[len(nums)-1]
+	return idx + 1
 }
