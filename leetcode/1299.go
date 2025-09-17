@@ -12,19 +12,18 @@ var Examples1299 = Example[[]int]{
 }
 
 func ReplaceElements1299(arr []int) []int {
-	i, j := 0, 1
-	for i < len(arr)-1 {
-		greatest := arr[j]
-		for j < len(arr) {
-			if arr[j] > greatest {
-				greatest = arr[j]
-			}
-			j++
+	max := -1
+	i := len(arr) - 1
+	for i >= 0 {
+		if i+1 == len(arr) || arr[i] > max {
+			temp := arr[i]
+			arr[i] = max
+			max = temp
+			i--
+			continue
 		}
-		arr[i] = greatest
-		i++
-		j = i + 1
+		arr[i] = max
+		i--
 	}
-	arr[len(arr)-1] = -1
 	return arr
 }
