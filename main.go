@@ -1,15 +1,18 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/kengru/problems/leetcode"
+	advent "github.com/kengru/problems/advent/2022/02"
 )
 
+// Leetcode Main
+// func main() {
+// 	for _, v := range leetcode.Examples448.Tests {
+// 		// leetcode.SortArrayByParity905(v)
+// 		fmt.Println(leetcode.FindDisappearedNumbers448(v))
+// 	}
+// }
+
+// Leetcode Main
 func main() {
-	for _, v := range leetcode.Examples448.Tests {
-		// leetcode.SortArrayByParity905(v)
-		fmt.Println(leetcode.FindDisappearedNumbers448(v))
-	}
-	// [0,1,4,0,3]
+	advent.Year20220202()
 }
