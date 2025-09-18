@@ -7,8 +7,17 @@ type Stack[V any] struct {
 	Items  []V
 }
 
+type Queue[T any] struct {
+	Length int
+	Items  []T
+}
+
 func (s Stack[V]) Peek() V {
 	return s.Items[s.Length-1]
+}
+
+func (q Queue[T]) Peek() T {
+	return q.Items[q.Length-1]
 }
 
 func (s *Stack[V]) Pop() V {
@@ -34,4 +43,16 @@ func (s *Stack[V]) Print() {
 		fmt.Println("[", s.Items[idx], "]")
 		idx--
 	}
+}
+
+type File struct {
+	Name string
+	Size int
+}
+
+type Directory struct {
+	Name  string
+	Size  int
+	Dirs  []*Directory
+	Files []*File
 }

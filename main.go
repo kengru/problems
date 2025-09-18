@@ -1,7 +1,7 @@
 package main
 
 import (
-	advent "github.com/kengru/problems/advent/2022/05"
+	advent "github.com/kengru/problems/advent/2022/07"
 )
 
 // Leetcode Main
@@ -14,5 +14,5 @@ import (
 
 // Leetcode Main
 func main() {
-	advent.Year20220502()
+	advent.Year20220701()
 }
