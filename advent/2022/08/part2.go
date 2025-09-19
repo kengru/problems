@@ -10,8 +10,8 @@ import (
 
 func Year20220802() {
 	// Getting input
-	lines := advent.GetLinesFromFile("advent/2022/08/ie.txt")
-	// lines := advent.GetLinesFromFile("advent/2022/08/input.txt")
+	// lines := advent.GetLinesFromFile("advent/2022/08/ie.txt")
+	lines := advent.GetLinesFromFile("advent/2022/08/input.txt")
 
 	grid := [][]int{}
 	for _, line := range lines {
@@ -27,49 +27,48 @@ func Year20220802() {
 	for j := 1; j < len(grid)-1; j++ {
 		for i := 1; i < len(grid[j])-1; i++ {
 			tree := grid[j][i]
-			scenic := 1
 
 			// top check
-			ts := 1
+			ts := 0
 			for tp := j - 1; tp >= 0; tp-- {
 				if grid[tp][i] >= tree {
-					scenic *= ts
+					ts++
 					break
 				}
 				ts++
 			}
 			// bot check
-			bs := 1
+			bs := 0
 			for bt := j + 1; bt < len(grid[j]); bt++ {
 				if grid[bt][i] >= tree {
-					scenic *= bs
+					bs++
 					break
 				}
 				bs++
 			}
 			// left check
-			ls := 1
+			ls := 0
 			for lf := i - 1; lf >= 0; lf-- {
 				if grid[j][lf] >= tree {
-					scenic *= ls
+					ls++
 					break
 				}
 				ls++
 			}
 			// right check
-			rs := 1
+			rs := 0
 			for rg := i + 1; rg < len(grid[i]); rg++ {
 				if grid[j][rg] >= tree {
-					scenic *= rs
+					rs++
 					break
 				}
 				rs++
 			}
 
-			routes = append(routes, scenic)
+			routes = append(routes, ts*bs*ls*rs)
 		}
 	}
 
 	sort.Ints(routes)
-	fmt.Println(routes)
+	fmt.Println(routes[len(routes)-1])
 }
