@@ -14,5 +14,5 @@ import (
 
 // Advent Of Code Main
 func main() {
-	advent.Year20220801()
+	advent.Year20220802()
 }
