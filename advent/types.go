@@ -45,14 +45,8 @@ func (s *Stack[V]) Print() {
 	}
 }
 
-type File struct {
-	Name string
-	Size int
-}
-
 type Directory struct {
-	Name  string
-	Size  int
-	Dirs  []*Directory
-	Files []*File
+	Parent *Directory
+	Name   string
+	Size   int
 }

@@ -9,10 +9,10 @@ import (
 	"github.com/kengru/problems/advent"
 )
 
-func Year20220702() {
+func Year20220802() {
 	// Getting input
-	// lines := advent.GetLinesFromFile("advent/2022/07/ie.txt")
-	lines := advent.GetLinesFromFile("advent/2022/07/input.txt")
+	// lines := advent.GetLinesFromFile("advent/2022/08/ie.txt")
+	lines := advent.GetLinesFromFile("advent/2022/08/input.txt")
 
 	dirs := []*advent.Directory{}
 	current := &advent.Directory{}

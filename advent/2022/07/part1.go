@@ -10,11 +10,10 @@ import (
 
 func Year20220701() {
 	// Getting input
-	lines := advent.GetLinesFromFile("advent/2022/07/ie.txt")
-	// lines := advent.GetLinesFromFile("advent/2022/07/input.txt")
+	// lines := advent.GetLinesFromFile("advent/2022/07/ie.txt")
+	lines := advent.GetLinesFromFile("advent/2022/07/input.txt")
 
 	dirs := []*advent.Directory{}
-	stack := advent.Stack[*advent.Directory]{}
 	current := &advent.Directory{}
 	idx := 0
 	for idx < len(lines) {
@@ -24,43 +23,38 @@ func Year20220701() {
 			if cmd[1] == "cd" {
 				if cmd[2] != ".." {
 					dir := advent.Directory{
-						Name:  cmd[2],
-						Size:  0,
-						Dirs:  []*advent.Directory{},
-						Files: []*advent.File{},
+						Parent: current,
+						Name:   cmd[2],
+						Size:   0,
 					}
 					dirs = append(dirs, &dir)
 					current = &dir
-					stack.Add(&dir)
 				} else {
-					current = stack.Pop()
+					current = current.Parent
 				}
 			}
 			idx++
 			continue
 		}
 		info := strings.Split(line, " ")
-		if info[0] == "dir" {
-			dir := advent.Directory{
-				Name:  info[1],
-				Size:  0,
-				Dirs:  []*advent.Directory{},
-				Files: []*advent.File{},
-			}
-			current.Dirs = append(current.Dirs, &dir)
-		} else {
+		if info[0] != "dir" {
 			size, _ := strconv.Atoi(info[0])
-			file := advent.File{
-				Name: info[1],
-				Size: size,
-			}
 			current.Size += size
-			current.Files = append(current.Files, &file)
+			parent := current.Parent
+			for parent != nil {
+				parent.Size += size
+				parent = parent.Parent
+			}
 		}
-		fmt.Println(lines[idx])
 		idx++
 	}
 
-	fmt.Println(dirs)
-	fmt.Println(current.Name)
+	total := 0
+	for _, d := range dirs {
+		if d.Size <= 100000 {
+			total += d.Size
+		}
+	}
+
+	fmt.Println(total)
 }
