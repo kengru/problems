@@ -1,29 +1,42 @@
 package leetcode
 
-// Given an integer array nums, return the third distinct maximum number in this array.
-// If the third maximum does not exist, return the maximum number.
+// Given a binary array nums, return the maximum number of consecutive 1's in the array if you can flip at most one 0.
 
 var Examples487 = Example[[]int]{
 	Tests: [][]int{
-		{4, 3, 2, 7, 8, 2, 3, 1},
-		{1, 1},
+		{1, 0, 1, 1, 0},
+		{1, 0, 1, 1, 0, 1},
+		{1, 1, 0, 1},
 	},
 }
 
-func FindMaxConsecutiveOnes448(nums []int) []int {
-	full := make(map[int]bool)
-	for i := range len(nums) {
-		_, ex := full[i+1]
-		if !ex {
-			full[i+1] = true
+func FindMaxConsecutiveOnesII487(nums []int) int {
+	idx1, idx2 := 0, 0
+	max := 0
+
+	for idx1 < len(nums) {
+		zeroes := 0
+		ones := 0
+		for idx2 < len(nums) && zeroes < 2 {
+			value := nums[idx2]
+			if value == 0 {
+				zeroes++
+			}
+			ones++
+			idx2++
 		}
+		if idx2 == len(nums) && zeroes < 2 {
+			if ones > max {
+				max = ones
+			}
+		} else {
+			if ones-1 > max {
+				max = ones - 1
+			}
+		}
+		idx1++
+		idx2 = idx1
 	}
-	for _, v := range nums {
-		delete(full, v)
-	}
-	keys := make([]int, 0, len(full))
-	for k := range full {
-		keys = append(keys, k)
-	}
-	return keys
+
+	return max
 }
