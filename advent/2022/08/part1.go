@@ -7,7 +7,7 @@ import (
 	"github.com/kengru/problems/advent"
 )
 
-func Year20220901() {
+func Year20220801() {
 	// Getting input
 	// lines := advent.GetLinesFromFile("advent/2022/08/ie.txt")
 	lines := advent.GetLinesFromFile("advent/2022/08/input.txt")

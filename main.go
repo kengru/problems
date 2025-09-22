@@ -1,20 +1,18 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/kengru/problems/leetcode"
+	advent "github.com/kengru/problems/advent/2022/09"
 )
 
 // Leetcode Main
-func main() {
-	for _, v := range leetcode.Examples487.Tests {
-		// leetcode.SortArrayByParity905(v)
-		fmt.Println(leetcode.FindMaxConsecutiveOnesII487(v))
-	}
-}
+// func main() {
+// 	for _, v := range leetcode.Examples448.Tests {
+// 		// leetcode.SortArrayByParity905(v)
+// 		fmt.Println(leetcode.FindDisappearedNumbers448(v))
+// 	}
+// }
 
 // Advent Of Code Main
-// func main() {
-// 	advent.Year20220901()
-// }
+func main() {
+	advent.Year20220901()
+}
