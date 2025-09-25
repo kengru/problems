@@ -65,9 +65,6 @@ func Year20220501() {
 		for i := range len(temp) {
 			stacks[to-1].Add(temp[i])
 		}
-		// for i := len(temp) - 1; i >= 0; i-- {
-		// 	stacks[to-1].Add(temp[i])
-		// }
 	}
 
 	crates := ""

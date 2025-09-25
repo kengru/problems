@@ -2,73 +2,94 @@ package advent
 
 import (
 	"fmt"
-	"sort"
 	"strconv"
+	"strings"
 
 	"github.com/kengru/problems/advent"
 )
 
-func Year20220802() {
+type Coord struct {
+	X int
+	Y int
+}
+
+func Year20220902() {
 	// Getting input
-	// lines := advent.GetLinesFromFile("advent/2022/08/ie.txt")
-	lines := advent.GetLinesFromFile("advent/2022/08/input.txt")
+	lines := advent.GetLinesFromFile("advent/2022/09/ie2.txt")
+	// lines := advent.GetLinesFromFile("advent/2022/09/input.txt")
 
-	grid := [][]int{}
+	rope := [10]Coord{}
+	visited := make(map[string]bool)
+
 	for _, line := range lines {
-		row := []int{}
-		for _, r := range line {
-			value, _ := strconv.Atoi(string(r))
-			row = append(row, value)
+		instruction := strings.Split(line, " ")
+		dir := instruction[0]
+		amt, _ := strconv.Atoi(instruction[1])
+
+		for amt > 0 {
+			if dir == "R" {
+				rope[0].X++
+			}
+			if dir == "D" {
+				rope[0].Y--
+			}
+			if dir == "L" {
+				rope[0].X--
+			}
+			if dir == "U" {
+				rope[0].Y++
+			}
+			for i := range 9 {
+				current := &rope[i]
+				next := &rope[i+1]
+
+				if dir == "R" {
+					diffX := current.X - next.X
+					if diffX > 1 {
+						next.X++
+						diffY := current.Y - next.Y
+						if diffY != 0 {
+							next.Y += diffY
+						}
+					}
+				}
+				if dir == "D" {
+					diffY := next.Y - current.Y
+					if diffY > 1 {
+						next.Y--
+						diffX := current.X - next.X
+						if diffX != 0 {
+							next.X += diffX
+						}
+					}
+				}
+				if dir == "L" {
+					diffX := next.X - current.X
+					if diffX > 1 {
+						next.X--
+						diffY := current.Y - next.Y
+						if diffY != 0 {
+							next.Y += diffY
+						}
+					}
+				}
+				if dir == "U" {
+					diffY := current.Y - next.Y
+					if diffY > 1 {
+						next.Y++
+						diffX := current.X - next.X
+						if diffX != 0 {
+							next.X += diffX
+						}
+					}
+				}
+			}
+			tailLoc := fmt.Sprintf("%d,%d", rope[9].X, rope[9].Y)
+			visited[tailLoc] = true
+			amt--
 		}
-		grid = append(grid, row)
+
 	}
 
-	routes := []int{}
-	for j := 1; j < len(grid)-1; j++ {
-		for i := 1; i < len(grid[j])-1; i++ {
-			tree := grid[j][i]
-
-			// top check
-			ts := 0
-			for tp := j - 1; tp >= 0; tp-- {
-				if grid[tp][i] >= tree {
-					ts++
-					break
-				}
-				ts++
-			}
-			// bot check
-			bs := 0
-			for bt := j + 1; bt < len(grid[j]); bt++ {
-				if grid[bt][i] >= tree {
-					bs++
-					break
-				}
-				bs++
-			}
-			// left check
-			ls := 0
-			for lf := i - 1; lf >= 0; lf-- {
-				if grid[j][lf] >= tree {
-					ls++
-					break
-				}
-				ls++
-			}
-			// right check
-			rs := 0
-			for rg := i + 1; rg < len(grid[i]); rg++ {
-				if grid[j][rg] >= tree {
-					rs++
-					break
-				}
-				rs++
-			}
-
-			routes = append(routes, ts*bs*ls*rs)
-		}
-	}
-
-	sort.Ints(routes)
-	fmt.Println(routes[len(routes)-1])
+	fmt.Println(len(visited))
 }
