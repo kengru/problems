@@ -17,7 +17,7 @@ func (s Stack[V]) Peek() V {
 }
 
 func (q Queue[T]) Peek() T {
-	return q.Items[q.Length-1]
+	return q.Items[0]
 }
 
 func (s *Stack[V]) Pop() V {
@@ -27,9 +27,21 @@ func (s *Stack[V]) Pop() V {
 	return item
 }
 
+func (q *Queue[T]) Pop() T {
+	item := q.Items[0]
+	q.Items = q.Items[1:]
+	q.Length--
+	return item
+}
+
 func (s *Stack[V]) Add(item V) {
 	s.Items = append(s.Items, item)
 	s.Length++
+}
+
+func (q *Queue[T]) Add(item T) {
+	q.Items = append(q.Items, item)
+	q.Length++
 }
 
 func (s *Stack[V]) Print() {
