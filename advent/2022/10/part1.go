@@ -2,6 +2,7 @@ package advent
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 	"strings"
 
@@ -20,13 +21,10 @@ func Year20221001() {
 	shouldAdd := false
 	for lineIdx < len(lines) {
 		line := lines[lineIdx]
-		if cycle == 20 {
-			println("at 20", registerX)
-			signal += registerX * 20
-		}
-		if cycle == 60 {
-			println("at 60", registerX)
-			signal += registerX * 60
+		y := 0.5 - 0.5*math.Cos(float64(math.Pi/20.0)*float64(cycle))
+		if y == 1 {
+			fmt.Println("here", cycle, registerX)
+			signal += registerX * cycle
 		}
 		if line == "noop" {
 			cycle++
