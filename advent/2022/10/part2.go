@@ -16,7 +16,6 @@ func Year20221002() {
 	registerX := 1
 	crt := make([][]string, 6)
 	x, y := 0, 0
-	cycle := 1
 	lineIdx := 0
 	shouldAdd := false
 	for lineIdx < len(lines) {
@@ -25,40 +24,33 @@ func Year20221002() {
 		}
 		line := lines[lineIdx]
 		if line == "noop" {
-			cycle++
 			lineIdx++
 			if x >= registerX-1 && x <= registerX+1 {
 				crt[y][x] = "#"
 			} else {
 				crt[y][x] = "."
 			}
-			x++
-			if x > 39 {
-				y++
-				x = 0
+		} else {
+			instruction := strings.Split(line, " ")
+			amt, _ := strconv.Atoi(instruction[1])
+			if x >= registerX-1 && x <= registerX+1 {
+				crt[y][x] = "#"
+			} else {
+				crt[y][x] = "."
 			}
-			continue
-		}
-		instruction := strings.Split(line, " ")
-		amt, _ := strconv.Atoi(instruction[1])
-		if x >= registerX-1 && x <= registerX+1 {
-			crt[y][x] = "#"
-		} else {
-			crt[y][x] = "."
-		}
-		if shouldAdd {
-			registerX += amt
-			lineIdx++
-			shouldAdd = false
-		} else {
-			shouldAdd = true
+			if shouldAdd {
+				registerX += amt
+				lineIdx++
+				shouldAdd = false
+			} else {
+				shouldAdd = true
+			}
 		}
 		x++
 		if x > 39 {
 			y++
 			x = 0
 		}
-		cycle++
 	}
 
 	for _, v := range crt {
