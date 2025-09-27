@@ -11,10 +11,10 @@ import (
 
 func Year20221001() {
 	// Getting input
-	lines := advent.GetLinesFromFile("advent/2022/10/ie2.txt")
-	// lines := advent.GetLinesFromFile("advent/2022/09/input.txt")
+	// lines := advent.GetLinesFromFile("advent/2022/10/ie2.txt")
+	lines := advent.GetLinesFromFile("advent/2022/10/input.txt")
 
-	cycle := 0
+	cycle := 1
 	signal := 0
 	registerX := 1
 	lineIdx := 0
@@ -23,7 +23,6 @@ func Year20221001() {
 		line := lines[lineIdx]
 		y := 0.5 - 0.5*math.Cos(float64(math.Pi/20.0)*float64(cycle))
 		if y == 1 {
-			fmt.Println("here", cycle, registerX)
 			signal += registerX * cycle
 		}
 		if line == "noop" {
@@ -43,7 +42,5 @@ func Year20221001() {
 		cycle++
 	}
 
-	fmt.Println("cycle", cycle)
-	fmt.Println("signal", signal)
-	fmt.Println("registerX", registerX)
+	fmt.Println(signal)
 }
