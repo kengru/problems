@@ -1,7 +1,11 @@
 package main
 
 import (
+<<<<<<< Updated upstream
 	advent "github.com/kengru/problems/advent/2025/05"
+=======
+	advent "github.com/kengru/problems/advent/2025/04"
+>>>>>>> Stashed changes
 )
 
 // Leetcode Main
@@ -14,5 +18,9 @@ import (
 
 // Advent Of Code Main
 func main() {
+<<<<<<< Updated upstream
 	advent.Year20250502()
+=======
+	advent.Year20250402()
+>>>>>>> Stashed changes
 }

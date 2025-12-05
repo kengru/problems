@@ -47,6 +47,31 @@ func GetLinesFromFile(path string) []string {
 	return lines
 }
 
+func GetMatrixFromFile(path string) [][]string {
+	file, err := os.Open(path)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	lines := [][]string{}
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		characters := []string{}
+		for _, l := range scanner.Text() {
+			characters = append(characters, string(l))
+		}
+		lines = append(lines, characters)
+	}
+
+	if err := scanner.Err(); err != nil {
+		panic(err)
+	}
+
+	return lines
+}
+
 func GetCharactersFromFile(path string) []string {
 	file, err := os.Open(path)
 	if err != nil {
