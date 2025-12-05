@@ -33,7 +33,6 @@ func Year20250202() {
 
 func isNewInvalid(id string) bool {
 	length := len(id)
-	invalid := false
 	for i := 1; i <= length/2; i++ {
 		subs := goodSplit(id, i)
 		if len(subs) == 1 {
@@ -49,7 +48,7 @@ func isNewInvalid(id string) bool {
 			return true
 		}
 	}
-	return invalid
+	return false
 }
 
 func goodSplit(id string, n int) []string {
