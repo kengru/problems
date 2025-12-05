@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"time"
+
+	d201501 "github.com/kengru/problems/advent/2015/01"
 
 	d202201 "github.com/kengru/problems/advent/2022/01"
 	d202202 "github.com/kengru/problems/advent/2022/02"
@@ -28,11 +31,17 @@ func RunAdventProblem(year int, day int, part int) error {
 	if !exists {
 		return fmt.Errorf("solution not found for year %d, day %d, part %d", year, day, part)
 	}
+	start := time.Now()
 	fn()
+	fmt.Printf("time: %v\n", time.Since(start))
 	return nil
 }
 
 var solutionRegistry = map[string]func(){
+	// 2015
+	"20150101": d201501.Year20150101,
+	"20150102": d201501.Year20150102,
+
 	// 2022
 	"20220101": d202201.Year20220101,
 	"20220102": d202201.Year20220102,

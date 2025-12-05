@@ -3,6 +3,7 @@ package advent
 import (
 	"bufio"
 	"os"
+	"strings"
 )
 
 func GetLineFromFile(path string) string {
@@ -79,19 +80,13 @@ func GetCharactersFromFile(path string) []string {
 	}
 	defer file.Close()
 
-	chars := []string{}
-
 	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		for _, r := range line {
-			chars = append(chars, string(r))
-		}
-	}
+	scanner.Scan()
+	line := scanner.Text()
 
 	if err := scanner.Err(); err != nil {
 		panic(err)
 	}
 
-	return chars
+	return strings.Split(line, "")
 }
