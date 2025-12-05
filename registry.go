@@ -5,6 +5,7 @@ import (
 	"time"
 
 	d201501 "github.com/kengru/problems/advent/2015/01"
+	d201502 "github.com/kengru/problems/advent/2015/02"
 
 	d202201 "github.com/kengru/problems/advent/2022/01"
 	d202202 "github.com/kengru/problems/advent/2022/02"
@@ -41,6 +42,8 @@ var solutionRegistry = map[string]func(){
 	// 2015
 	"20150101": d201501.Year20150101,
 	"20150102": d201501.Year20150102,
+	"20150201": d201502.Year20150201,
+	"20150202": d201502.Year20150202,
 
 	// 2022
 	"20220101": d202201.Year20220101,
