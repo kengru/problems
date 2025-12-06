@@ -6,6 +6,8 @@ import (
 
 	d201501 "github.com/kengru/problems/advent/2015/01"
 	d201502 "github.com/kengru/problems/advent/2015/02"
+	d201503 "github.com/kengru/problems/advent/2015/03"
+	d201504 "github.com/kengru/problems/advent/2015/04"
 
 	d202201 "github.com/kengru/problems/advent/2022/01"
 	d202202 "github.com/kengru/problems/advent/2022/02"
@@ -24,6 +26,8 @@ import (
 	d202503 "github.com/kengru/problems/advent/2025/03"
 	d202504 "github.com/kengru/problems/advent/2025/04"
 	d202505 "github.com/kengru/problems/advent/2025/05"
+
+	d202401 "github.com/kengru/problems/advent/2024/01"
 )
 
 func RunAdventProblem(year int, day int, part int) error {
@@ -36,6 +40,7 @@ func RunAdventProblem(year int, day int, part int) error {
 	fn()
 	fmt.Printf("time: %v\n", time.Since(start))
 	return nil
+
 }
 
 var solutionRegistry = map[string]func(){
@@ -44,6 +49,10 @@ var solutionRegistry = map[string]func(){
 	"20150102": d201501.Year20150102,
 	"20150201": d201502.Year20150201,
 	"20150202": d201502.Year20150202,
+	"20150301": d201503.Year20150301,
+	"20150302": d201503.Year20150302,
+	"20150401": d201504.Year20150401,
+	"20150402": d201504.Year20150402,
 
 	// 2022
 	"20220101": d202201.Year20220101,
@@ -68,6 +77,10 @@ var solutionRegistry = map[string]func(){
 	"20221002": d202210.Year20221002,
 	"20221101": d202211.Year20221101,
 	"20221102": d202211.Year20221102,
+
+	// 2024
+	"20240101": d202401.Year20240101,
+	"20240102": d202401.Year20240102,
 
 	// 2025
 	"20250101": d202501.Year20250101,
