@@ -90,3 +90,36 @@ func GetCharactersFromFile(path string) []string {
 
 	return strings.Split(line, "")
 }
+
+func GetSeparatedFromFile(path string, trim bool) [][]string {
+	file, err := os.Open(path)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	lines := [][]string{}
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		characters := []string{}
+		numbers := strings.Split(scanner.Text(), " ")
+		for _, l := range numbers {
+			if trim {
+				n := strings.TrimSpace(l)
+				if n != "" {
+					characters = append(characters, n)
+				}
+			} else {
+				characters = append(characters, l)
+			}
+		}
+		lines = append(lines, characters)
+	}
+
+	if err := scanner.Err(); err != nil {
+		panic(err)
+	}
+
+	return lines
+}

@@ -26,6 +26,7 @@ import (
 	d202503 "github.com/kengru/problems/advent/2025/03"
 	d202504 "github.com/kengru/problems/advent/2025/04"
 	d202505 "github.com/kengru/problems/advent/2025/05"
+	d202506 "github.com/kengru/problems/advent/2025/06"
 
 	d202401 "github.com/kengru/problems/advent/2024/01"
 )
@@ -93,4 +94,6 @@ var solutionRegistry = map[string]func(){
 	"20250402": d202504.Year20250402,
 	"20250501": d202505.Year20250501,
 	"20250502": d202505.Year20250502,
+	"20250601": d202506.Year20250601,
+	"20250602": d202506.Year20250602,
 }
